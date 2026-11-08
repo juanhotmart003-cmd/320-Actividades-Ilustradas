@@ -9,7 +9,26 @@
 <meta name="robots" content="noindex, nofollow">
 <meta property="og:title" content="+320 Actividades Ilustradas para la Atención del Adulto Mayor | Plenitud">
 <meta property="og:type" content="website">
-<!-- PEGA AQUÍ TU UTMIFY + META PIXEL (tu estructura validada) -->
+<!-- UTMFy Code -->
+<script src="https://cdn.utmify.com.br/scripts/utms/latest.js" data-utmify-prevent-xcod-sck data-utmify-prevent-subids async defer ></script>
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1130079963082473');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1130079963082473&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -580,10 +599,10 @@ img,svg{ max-width:100%; }
 <script>
 (function(){
   // Pega aquí tu link de checkout de Hotmart. Todos los botones .CTA-link lo usan.
-  var CHECKOUT_URL = "";
+  var CHECKOUT_URL = "https://pay.hotmart.com/C108396876G?checkoutMode=10";
   try{ document.documentElement.classList.add('js'); }catch(e){}
   try{
-    if(CHECKOUT_URL){ document.querySelectorAll('.CTA-link').forEach(function(a){ a.setAttribute('href', CHECKOUT_URL); }); }
+    if(CHECKOUT_URL){ document.querySelectorAll('.CTA-link').forEach(function(a){ a.setAttribute('href', CHECKOUT_URL); a.addEventListener('click', function(){ try{ if(window.fbq) fbq('track','InitiateCheckout'); }catch(e){} }); }); }
   }catch(e){}
 
 
