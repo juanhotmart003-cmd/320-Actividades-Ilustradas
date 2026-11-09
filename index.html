@@ -70,7 +70,8 @@ img,svg{ max-width:100%; }
 .hero-pills{ display:flex; flex-wrap:wrap; justify-content:center; gap:8px; margin:18px auto 0; padding:0; }
 .hero-pills span{ background:var(--sky); color:var(--deep); font-weight:700; font-size:14px; padding:7px 14px; border-radius:999px; }
 .hero-subheadline{ margin:14px auto 0; max-width:640px; font-size:clamp(16px,2.4vw,19px); color:var(--muted); }
-.video-wrapper{ width:min(100%,300px); margin:32px auto 0; }
+.video-wrapper{ width:min(100%,340px); margin:32px auto 0; }
+.hero-video{ display:block; width:100%; aspect-ratio:9/16; border-radius:28px; background:var(--deep); object-fit:cover; box-shadow:0 30px 50px -28px rgba(11,58,99,.55), 0 0 0 4px #fff; }
 .video-facade{ aspect-ratio:9/16; border:2px dashed var(--blue); border-radius:28px; background:var(--sky); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px; color:var(--blue-2); font-weight:600; font-size:13px; padding:16px; }
 .play-icon{ width:64px; height:64px; padding:16px 12px 16px 20px; background:var(--blue); border-radius:50%; fill:#fff; }
 .social-proof{ margin-top:24px; font-size:15px; color:var(--muted); }
@@ -261,10 +262,9 @@ img,svg{ max-width:100%; }
     <p class="hero-pills"><span>Ejercicios</span><span>Evaluación</span><span>Fichas</span><span>Sesiones</span></p>
     <p class="hero-subheadline">Arma tus sesiones en minutos: 6 guías y 4 bonos para evaluar, planificar y diversificar cada atención, listos para imprimir y aplicar.</p>
     <div class="video-wrapper" id="video-wrapper">
-      <div class="video-facade" id="video-facade">
-        <svg class="play-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
-        [ VIDEO IA VERTICAL 9:16 ]
-      </div>
+      <video class="hero-video" id="hero-video" controls playsinline preload="none" poster="poster-hero%20(1).jpg" aria-label="Video de presentación de Plenitud Guías">
+        <source src="video-hero%20(6).mp4" type="video/mp4">
+      </video>
     </div>
     <p class="social-proof">Material pensado para kinesiólogos, fisioterapeutas, educadores físicos y cuidadores.</p>
   </div>
