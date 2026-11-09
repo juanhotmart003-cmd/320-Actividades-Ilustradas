@@ -70,7 +70,13 @@ img,svg{ max-width:100%; }
 .hero-pills{ display:flex; flex-wrap:wrap; justify-content:center; gap:8px; margin:18px auto 0; padding:0; }
 .hero-pills span{ background:var(--sky); color:var(--deep); font-weight:700; font-size:14px; padding:7px 14px; border-radius:999px; }
 .hero-subheadline{ margin:14px auto 0; max-width:640px; font-size:clamp(16px,2.4vw,19px); color:var(--muted); }
-.video-wrapper{ width:min(100%,340px); margin:32px auto 0; }
+.video-wrapper{ position:relative; width:min(100%,340px); margin:32px auto 0; }
+.hero-play{ position:absolute; inset:0; border:0; background:transparent; cursor:pointer; border-radius:28px; display:flex; align-items:center; justify-content:center; padding:0; z-index:2; -webkit-tap-highlight-color:transparent; }
+.hero-play[hidden]{ display:none; }
+.hero-play-ic{ width:92px; height:92px; border-radius:50%; background:var(--blue); border:5px solid #fff; color:#fff; display:flex; align-items:center; justify-content:center; animation:heroPulse 1.5s ease-out infinite; }
+.hero-play-ic svg{ width:42px; height:42px; fill:currentColor; margin-left:5px; }
+@keyframes heroPulse{ 0%{ box-shadow:0 0 0 0 rgba(31,111,181,.65); transform:scale(1); } 70%{ box-shadow:0 0 0 30px rgba(31,111,181,0); transform:scale(1.08); } 100%{ box-shadow:0 0 0 0 rgba(31,111,181,0); transform:scale(1); } }
+@media (prefers-reduced-motion:reduce){ .hero-play-ic{ animation:none; } }
 .hero-video{ display:block; width:100%; aspect-ratio:9/16; border-radius:28px; background:var(--deep); object-fit:cover; box-shadow:0 30px 50px -28px rgba(11,58,99,.55), 0 0 0 4px #fff; }
 .video-facade{ aspect-ratio:9/16; border:2px dashed var(--blue); border-radius:28px; background:var(--sky); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px; color:var(--blue-2); font-weight:600; font-size:13px; padding:16px; }
 .play-icon{ width:64px; height:64px; padding:16px 12px 16px 20px; background:var(--blue); border-radius:50%; fill:#fff; }
@@ -262,9 +268,11 @@ img,svg{ max-width:100%; }
     <p class="hero-pills"><span>Ejercicios</span><span>Evaluación</span><span>Fichas</span><span>Sesiones</span></p>
     <p class="hero-subheadline">Arma tus sesiones en minutos: 6 guías y 4 bonos para evaluar, planificar y diversificar cada atención, listos para imprimir y aplicar.</p>
     <div class="video-wrapper" id="video-wrapper">
-      <video class="hero-video" id="hero-video" controls playsinline preload="none" poster="poster-hero%20(1).jpg" aria-label="Video de presentación de Plenitud Guías">
+      <video class="hero-video" id="hero-video" playsinline preload="metadata" aria-label="Video de presentación de Plenitud Guías">
+        <source src="video-hero.mp4" type="video/mp4">
         <source src="video-hero%20(6).mp4" type="video/mp4">
       </video>
+      <button class="hero-play" id="hero-play" type="button" aria-label="Reproducir video"><span class="hero-play-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span></button>
     </div>
     <p class="social-proof">Material pensado para kinesiólogos, fisioterapeutas, educadores físicos y cuidadores.</p>
   </div>
@@ -601,6 +609,17 @@ img,svg{ max-width:100%; }
   // Pega aquí tu link de checkout de Hotmart. Todos los botones .CTA-link lo usan.
   var CHECKOUT_URL = "https://pay.hotmart.com/C108396876G?checkoutMode=10";
   try{ document.documentElement.classList.add('js'); }catch(e){}
+  try{
+    var hv=document.getElementById('hero-video'),hp=document.getElementById('hero-play');
+    if(hv&&hp){
+      var pi=new Image();
+      pi.onload=function(){ hv.poster='poster-hero.jpg'; };
+      pi.onerror=function(){ hv.poster='poster-hero%20(1).jpg'; };
+      pi.src='poster-hero.jpg';
+      hp.addEventListener('click',function(){ hp.hidden=true; hv.controls=true; var r=hv.play(); if(r&&r.catch){ r.catch(function(){ hp.hidden=false; hv.controls=false; }); } });
+      hv.addEventListener('ended',function(){ hp.hidden=false; hv.controls=false; });
+    }
+  }catch(e){}
   try{
     if(CHECKOUT_URL){ document.querySelectorAll('.CTA-link').forEach(function(a){ a.setAttribute('href', CHECKOUT_URL); a.addEventListener('click', function(){ try{ if(window.fbq) fbq('track','InitiateCheckout'); }catch(e){} }); }); }
   }catch(e){}
