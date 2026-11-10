@@ -181,6 +181,9 @@ img,svg{ max-width:100%; }
 .btn-secondary{ width:min(100%,440px); background:var(--deep); }
 .btn-faq-cta{ width:auto; display:inline-flex; margin-top:0; padding:12px 20px; font-size:15px; border-radius:12px; box-shadow:none; }
 .btn-pulse{ animation:pulse 2.2s infinite; }
+.vid-on .btn-pulse{ animation:none; }
+.top-promo-bar{ contain:layout paint; transform:translateZ(0); }
+.hero-video{ transform:translateZ(0); }
 @keyframes pulse{ 0%{ box-shadow:0 0 0 0 rgba(31,111,181,.55); } 70%{ box-shadow:0 0 0 16px rgba(31,111,181,0); } 100%{ box-shadow:0 0 0 0 rgba(31,111,181,0); } }
 .local-price{ margin-top:10px; font-size:14px; font-weight:600; color:var(--deep); background:var(--offwhite); border:1px solid var(--line); border-radius:999px; padding:7px 14px; display:inline-block; }
 .local-price[hidden]{ display:none; }
@@ -273,7 +276,7 @@ img,svg{ max-width:100%; }
     <p class="hero-pills"><span>Ejercicios</span><span>Evaluación</span><span>Fichas</span><span>Sesiones</span></p>
     <p class="hero-subheadline">Arma tus sesiones en minutos: 6 guías y 4 bonos para evaluar, planificar y diversificar cada atención, listos para imprimir y aplicar.</p>
     <div class="video-wrapper" id="video-wrapper">
-      <iframe class="hero-video" src="https://www.youtube-nocookie.com/embed/oyyIRbiCAag?rel=0&playsinline=1" title="Video de presentación de Plenitud Guías" loading="lazy" allow="accelerometer; encrypted-media; picture-in-picture; fullscreen" allowfullscreen style="border:0"></iframe>
+      <iframe class="hero-video" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube-nocookie.com/embed/oyyIRbiCAag?rel=0&playsinline=1" title="Video de presentación de Plenitud Guías" loading="lazy" allow="accelerometer; encrypted-media; picture-in-picture; fullscreen" allowfullscreen style="border:0"></iframe>
     </div>
     <p class="social-proof">Material pensado para kinesiólogos, fisioterapeutas, educadores físicos y cuidadores.</p>
   </div>
@@ -659,7 +662,10 @@ img,svg{ max-width:100%; }
     if(!end||end<Date.now()) end=newEnd();
     var el=document.getElementById('promo-timer-text');
     function pad(n){ return n<10?'0'+n:String(n); }
+    var vidOn=false;
+    try{ var vw=document.getElementById('video-wrapper'); if(vw&&'IntersectionObserver' in window){ new IntersectionObserver(function(es){ vidOn=es[0].isIntersecting; document.documentElement.classList.toggle('vid-on',vidOn); },{threshold:.2}).observe(vw); } }catch(e){}
     function tick(){
+      if(vidOn) return;
       var left=end-Date.now(); if(left<=0){ end=newEnd(); left=DUR; }
       var s=Math.floor(left/1000);
       el.textContent='🔥 La oferta expira en '+pad(Math.floor(s/60))+':'+pad(s%60)+' 🔥';
