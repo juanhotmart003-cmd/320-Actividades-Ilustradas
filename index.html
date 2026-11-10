@@ -614,43 +614,15 @@ img,svg{ max-width:100%; }
   try{
     var hv=document.getElementById('hero-video'),hp=document.getElementById('hero-play');
     if(hv&&hp){
-      var VID='oyyIRbiCAag',yf=null,ready=false,clicked=false,playing=false,tries=0;
-      function cmd(fn){ try{ yf.contentWindow.postMessage(JSON.stringify({event:'command',func:fn,args:''}),'*'); }catch(e){} }
-      function build(auto){
-        if(yf) return;
-        yf=document.createElement('iframe');
-        yf.src='https://www.youtube-nocookie.com/embed/'+VID+'?rel=0&modestbranding=1&playsinline=1&enablejsapi=1&iv_load_policy=3'+(auto?'&autoplay=1':'')+'&origin='+encodeURIComponent(location.origin);
-        yf.title='Video de presentación de Plenitud Guías';
-        yf.allow='autoplay; encrypted-media; picture-in-picture; fullscreen';
-        yf.setAttribute('allowfullscreen','');
-        yf.style.cssText='position:absolute;inset:0;width:100%;height:100%;border:0;border-radius:28px;background:#000;z-index:1;visibility:hidden';
-        yf.addEventListener('load',function(){
-          ready=true;
-          try{ yf.contentWindow.postMessage(JSON.stringify({event:'listening',id:1}),'*'); }catch(e){}
-          if(clicked&&!auto) go();
-        });
-        hv.parentNode.appendChild(yf);
-      }
-      function go(){
-        yf.style.visibility='visible'; yf.style.zIndex='3'; hp.hidden=true;
-        if(playing) return;
-        cmd('playVideo');
-        if(tries++<6) setTimeout(function(){ if(!playing) go(); },700);
-      }
-      window.addEventListener('message',function(e){
-        if(!yf||e.source!==yf.contentWindow) return;
-        try{ var d=typeof e.data==='string'?JSON.parse(e.data):e.data;
-          var st=(d.info&&typeof d.info.playerState!=='undefined')?d.info.playerState:null;
-          if(st===1) playing=true; }catch(x){}
-      });
-      // pre-carga el reproductor tras la primera interacción (no pesa en la carga inicial)
-      var pre=function(){ ['touchstart','scroll','pointerdown','keydown'].forEach(function(ev){ window.removeEventListener(ev,pre); }); build(false); };
-      ['touchstart','scroll','pointerdown','keydown'].forEach(function(ev){ window.addEventListener(ev,pre,{passive:true,once:true}); });
-      setTimeout(function(){ if('requestIdleCallback' in window) requestIdleCallback(function(){ build(false); },{timeout:2000}); else build(false); },6000);
       hp.addEventListener('click',function(){
-        clicked=true;
-        if(!yf){ build(true); hp.hidden=true; yf.style.visibility='visible'; yf.style.zIndex='3'; return; }
-        if(ready) go(); else { hp.hidden=true; }
+        if(hv.parentNode.querySelector('iframe')) return;
+        var f=document.createElement('iframe');
+        f.src='https://www.youtube-nocookie.com/embed/oyyIRbiCAag?autoplay=1&rel=0&playsinline=1';
+        f.title='Video de presentación de Plenitud Guías';
+        f.allow='autoplay; encrypted-media; picture-in-picture; fullscreen';
+        f.setAttribute('allowfullscreen','');
+        f.style.cssText='position:absolute;inset:0;width:100%;height:100%;border:0;border-radius:28px;background:#000;z-index:3';
+        hp.hidden=true; hv.parentNode.appendChild(f);
       });
     }
   }catch(e){}
