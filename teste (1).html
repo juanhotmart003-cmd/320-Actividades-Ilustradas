@@ -1,0 +1,12 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Teste do vídeo</title>
+<style>body{margin:0;padding:16px;font-family:sans-serif;text-align:center}h3{margin:28px 0 8px}iframe,.f{width:260px;max-width:100%;aspect-ratio:9/16;border:0;display:block;margin:0 auto;background:#000}.f{color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:18px}</style></head><body>
+<p><b>Abra pelo endereço do site (não pelo arquivo). Dê play em cada um e anote qual roda bem.</b></p>
+<h3>A: youtube-nocookie</h3>
+<iframe referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube-nocookie.com/embed/oyyIRbiCAag?rel=0&playsinline=1" allow="encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>
+<h3>B: youtube.com</h3>
+<iframe referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/oyyIRbiCAag?rel=0&playsinline=1" allow="encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>
+<h3>C: youtube.com, abre no toque, com autoplay</h3>
+<div class="f" id="c" onclick="this.outerHTML='<iframe referrerpolicy=&quot;strict-origin-when-cross-origin&quot; src=&quot;https://www.youtube.com/embed/oyyIRbiCAag?autoplay=1&amp;rel=0&amp;playsinline=1&quot; allow=&quot;autoplay; encrypted-media; picture-in-picture; fullscreen&quot; allowfullscreen></iframe>'">▶ Toque aqui</div>
+<h3>D: youtube.com, autoplay mudo (depois você liga o som)</h3>
+<div class="f" onclick="this.outerHTML='<iframe referrerpolicy=&quot;strict-origin-when-cross-origin&quot; src=&quot;https://www.youtube.com/embed/oyyIRbiCAag?autoplay=1&amp;mute=1&amp;rel=0&amp;playsinline=1&quot; allow=&quot;autoplay; encrypted-media; picture-in-picture; fullscreen&quot; allowfullscreen></iframe>'">▶ Toque aqui</div>
+</body></html>
