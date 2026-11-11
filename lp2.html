@@ -227,6 +227,20 @@ h2{font-size:clamp(24px,6.2vw,34px);font-weight:800;text-align:center}
 .tbody b{display:block;margin-top:12px;font-size:15px;color:var(--blue2)}
 .tbody small{display:block;color:var(--muted);font-size:12.5px;margin-top:2px}
 @media(min-width:560px){.tgrid-photo{grid-template-columns:1fr 1fr}}
+.pstats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:20px;text-align:center}
+.pstats b{display:block;font-size:clamp(28px,8vw,38px);font-weight:900;color:var(--deep);line-height:1.1}
+.pstats span{display:block;font-size:13px;color:var(--muted);margin-top:2px}
+.rail{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;margin:22px calc(-1*max(20px,env(safe-area-inset-left,0px)));padding:4px max(20px,env(safe-area-inset-left,0px)) 14px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.rail::-webkit-scrollbar{display:none}
+.rail figure{position:relative;flex:0 0 78%;max-width:300px;scroll-snap-align:center;border-radius:18px;overflow:hidden;box-shadow:0 16px 30px -18px rgba(11,58,99,.6);background:var(--tint)}
+.rail img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:center 30%}
+.rail figcaption{position:absolute;left:0;right:0;bottom:0;padding:34px 14px 12px;color:#fff;background:linear-gradient(180deg,rgba(8,44,76,0),rgba(8,44,76,.88))}
+.rail figcaption b{display:block;font-size:15px}
+.rail figcaption span{font-size:12.5px;opacity:.9}
+.rail-bar{height:4px;background:var(--line);border-radius:4px;margin-top:2px;overflow:hidden}
+.rail-bar i{display:block;height:100%;width:50%;background:var(--accent);border-radius:4px;transform:translateX(0)}
+.rail-note{text-align:center;color:var(--muted);font-size:11.5px;margin-top:4px;opacity:.8}
+.rail-hint{text-align:center;color:var(--muted);font-size:12.5px;margin-top:10px}
 .js .rv{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
 .js .rv.on{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){.btn-pulse{animation:none}.cf-stage img{transition:none}.js .rv{opacity:1;transform:none;transition:none}}
@@ -431,6 +445,28 @@ h2{font-size:clamp(24px,6.2vw,34px);font-weight:800;text-align:center}
   </div>
 </section>
 
+<section class="sec sec-white proof">
+  <div class="wrap">
+    <span class="pill pill-light">Así se usa Plenitud</span>
+    <h2>El material en acción</h2>
+    <div class="pstats">
+      <div><b>+320</b><span>Actividades</span></div>
+      <div><b>6</b><span>Guías</span></div>
+      <div><b>4</b><span>Bonos</span></div>
+    </div>
+    <div class="rail" id="rail">
+      <figure><img src="img/escena-32.webp" width="640" height="800" alt="Profesional dirigiendo una sesión grupal con la ficha Rodar en la palma" loading="lazy" decoding="async"><figcaption><b>Sesión grupal con la ficha «Rodar en la palma»</b><span>Actividad en grupo</span></figcaption></figure>
+      <figure><img src="img/escena-33.webp" width="640" height="800" alt="Profesional y adulta mayor trabajando la ficha Brazo y pierna" loading="lazy" decoding="async"><figcaption><b>Ficha «Brazo y pierna» trabajada de a dos</b><span>Atención individual</span></figcaption></figure>
+      <figure><img src="img/escena-34.webp" width="640" height="800" alt="Profesional revisando la ficha Nadar de pecho en el aire y la planificación semanal" loading="lazy" decoding="async"><figcaption><b>Planificación de la semana con las fichas</b><span>Organización de sesiones</span></figcaption></figure>
+      <figure><img src="img/escena-35.webp" width="640" height="800" alt="Profesional y adulto mayor en silla de ruedas con la ficha Piernas pesadas" loading="lazy" decoding="async"><figcaption><b>Ficha «Piernas pesadas» con movilidad reducida</b><span>Ejercicios adaptados</span></figcaption></figure>
+      <figure><img src="img/escena-36.webp" width="640" height="800" alt="Dos profesionales con la ficha Bingo musical impresa y en tablet" loading="lazy" decoding="async"><figcaption><b>«Bingo musical» impreso y en tablet</b><span>Impreso o en pantalla</span></figcaption></figure>
+    </div>
+    <div class="rail-bar"><i id="rail-i"></i></div>
+    <p class="rail-hint">← Desliza para ver más →</p>
+    <p class="rail-note">Imágenes ilustrativas del uso del material.</p>
+  </div>
+</section>
+
 <section class="sec sec-white">
   <div class="wrap narrow garantia">
     <img src="img/garantia-28.webp" width="200" height="200" alt="Sello: satisfacción garantizada, 7 días, tu dinero de vuelta" loading="lazy" decoding="async">
@@ -564,6 +600,15 @@ h2{font-size:clamp(24px,6.2vw,34px);font-weight:800;text-align:center}
   // Fecha de hoy en la barra superior
   try{ var d=new Date(), t=document.getElementById('today'); if(t) t.textContent=('0'+d.getDate()).slice(-2)+'/'+('0'+(d.getMonth()+1)).slice(-2); }catch(e){}
 
+
+  // Barra de progreso del carrusel de testimonios
+  try{
+    var rail=document.getElementById('rail'), bar=document.getElementById('rail-i');
+    if(rail&&bar){
+      var upd=function(){ var max=rail.scrollWidth-rail.clientWidth; var r=rail.clientWidth/rail.scrollWidth; bar.style.width=Math.max(18,r*100)+'%'; var p=max>0?rail.scrollLeft/max:0; bar.style.transform='translateX('+(p*((1/r)-1)*100)+'%)'; };
+      rail.addEventListener('scroll',upd,{passive:true}); window.addEventListener('resize',upd); upd();
+    }
+  }catch(e){}
   // Carrusel tipo coverflow
   try{
     var stage=document.getElementById('cf-stage'), imgs=[].slice.call(stage.querySelectorAll('img')), N=imgs.length, cur=0;
