@@ -275,9 +275,7 @@ img,svg{ max-width:100%; }
     <h1 class="hero-headline">+320 Actividades Ilustradas para la Atención del Adulto Mayor</h1>
     <p class="hero-pills"><span>Ejercicios</span><span>Evaluación</span><span>Fichas</span><span>Sesiones</span></p>
     <p class="hero-subheadline">Arma tus sesiones en minutos: 6 guías y 4 bonos para evaluar, planificar y diversificar cada atención, listos para imprimir y aplicar.</p>
-    <div class="video-wrapper" id="video-wrapper">
-      <iframe class="hero-video" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube-nocookie.com/embed/oyyIRbiCAag?rel=0&playsinline=1" title="Video de presentación de Plenitud Guías" loading="lazy" allow="accelerometer; encrypted-media; picture-in-picture; fullscreen" allowfullscreen style="border:0"></iframe>
-    </div>
+    <div class="video-wrapper" id="video-wrapper"><div id="video-host" class="hero-video"></div><noscript><a href="https://youtube.com/shorts/oyyIRbiCAag">Ver video</a></noscript></div>
     <p class="social-proof">Material pensado para kinesiólogos, fisioterapeutas, educadores físicos y cuidadores.</p>
   </div>
 </header>
@@ -608,6 +606,16 @@ img,svg{ max-width:100%; }
   </div>
 </footer>
 
+<script>
+(function(){
+  // Player de YouTube dentro de Shadow DOM: los scripts externos (Utmify, etc.) no lo ven ni lo recargan.
+  try{
+    var h=document.getElementById('video-host'); if(!h) return;
+    var r=h.attachShadow({mode:'open'});
+    r.innerHTML='<style>:host{display:block}iframe{display:block;width:100%;height:100%;border:0;border-radius:28px;background:#000}</style><iframe src="https://www.youtube-nocookie.com/embed/oyyIRbiCAag?rel=0&playsinline=1" title="Video de presentación de Plenitud Guías" referrerpolicy="strict-origin-when-cross-origin" allow="encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>';
+  }catch(e){}
+})();
+</script>
 <script>
 (function(){
   // Pega aquí tu link de checkout de Hotmart. Todos los botones .CTA-link lo usan.
