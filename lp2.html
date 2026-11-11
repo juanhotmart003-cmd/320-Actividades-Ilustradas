@@ -220,6 +220,13 @@ h2{font-size:clamp(24px,6.2vw,34px);font-weight:800;text-align:center}
 .foot .disc{font-size:11.5px;opacity:.7;line-height:1.5}
 .foot a{text-decoration:none;color:var(--accent-l)}
 
+.tphoto{padding:0;overflow:hidden;background:#fff}
+.tphoto img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:center 30%}
+.tbody{padding:14px 16px 18px}
+.tbody p{margin-top:8px;font-size:14px;font-weight:500}
+.tbody b{display:block;margin-top:12px;font-size:15px;color:var(--blue2)}
+.tbody small{display:block;color:var(--muted);font-size:12.5px;margin-top:2px}
+@media(min-width:560px){.tgrid-photo{grid-template-columns:1fr 1fr}}
 .js .rv{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
 .js .rv.on{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){.btn-pulse{animation:none}.cf-stage img{transition:none}.js .rv{opacity:1;transform:none;transition:none}}
@@ -251,13 +258,10 @@ h2{font-size:clamp(24px,6.2vw,34px);font-weight:800;text-align:center}
   <div class="wrap">
     <span class="pill pill-light">Profesionales que ya lo usan</span>
     <h2>Lo que dicen quienes ya trabajan con Plenitud</h2>
-    <p class="lead">Opiniones de profesionales que usan el material.</p>
-    <div class="tgrid">
-      <article class="tcard"><div class="thead"><img src="img/avatar-23.webp" width="56" height="56" alt="Lic. Gabriel Torres" loading="lazy" decoding="async"><div><b>Lic. Gabriel Torres</b><small>Profesional de la rehabilitación</small></div></div><div class="stars">★★★★★</div><p>“Me encantó el contenido. Las fichas están muy bien explicadas, con ilustraciones que facilitan el trabajo.”</p></article>
-      <article class="tcard"><div class="thead"><img src="img/avatar-24.webp" width="56" height="56" alt="Dra. Carolina Méndez" loading="lazy" decoding="async"><div><b>Dra. Carolina Méndez</b><small>Profesional de la salud</small></div></div><div class="stars">★★★★★</div><p>“Muy completo, claro y práctico. Lo estoy usando con mis pacientes mayores y lo noto en su seguridad al moverse.”</p></article>
-      <article class="tcard"><div class="thead"><img src="img/avatar-25.webp" width="56" height="56" alt="Dra. Andrea Rojas" loading="lazy" decoding="async"><div><b>Dra. Andrea Rojas</b><small>Profesional de la salud</small></div></div><div class="stars">★★★★★</div><p>“Incluye Parkinson, Alzheimer, post internación… Me ha ahorrado mucho tiempo en la planificación de sesiones.”</p></article>
-      <article class="tcard"><div class="thead"><img src="img/avatar-26.webp" width="56" height="56" alt="Prof. Diego Salazar" loading="lazy" decoding="async"><div><b>Prof. Diego Salazar</b><small>Centro de adultos mayores</small></div></div><div class="stars">★★★★★</div><p>“Es fácil de aplicar, con ejercicios seguros y adaptables a diferentes niveles. Nos ha sido de gran ayuda.”</p></article>
-      <article class="tcard tcard-wide"><div class="thead"><img src="img/avatar-27.webp" width="56" height="56" alt="Lic. Mariana Vega" loading="lazy" decoding="async"><div><b>Lic. Mariana Vega</b><small>Profesional de la salud</small></div></div><div class="stars">★★★★★</div><p>“Material de altísima calidad, organizado por objetivos y niveles, y con la guía para familiares. Lo recomiendo 100%.”</p></article>
+    <p class="lead">Profesionales que ya organizan sus sesiones con Plenitud.</p>
+    <div class="tgrid tgrid-photo">
+      <article class="tcard tphoto"><img src="img/prueba-30.webp" width="640" height="853" alt="Mariana Hernández, fisioterapeuta de México, con la guía Fichas Ilustradas de Plenitud" loading="lazy" decoding="async"><div class="tbody"><div class="stars">★★★★★</div><p>“Antes perdía muchísimo tiempo buscando actividades y preparando cada sesión. Ahora tengo todo organizado, con ejercicios ilustrados que puedo imprimir y utilizar fácilmente. Mis adultos mayores participan con más entusiasmo y mi trabajo se siente mucho más profesional.”</p><b>Mariana Hernández</b><small>🇲🇽 Fisioterapeuta · México</small></div></article>
+      <article class="tcard tphoto"><img src="img/prueba-31.webp" width="640" height="853" alt="Lucía Fernández, kinesióloga de Argentina, con la guía Estiramientos y Relajación de Plenitud" loading="lazy" decoding="async"><div class="tbody"><div class="stars">★★★★★</div><p>“Preparar las sesiones desde cero me llevaba horas. Desde que uso Plenitud, simplemente elijo las actividades que necesito y las tengo listas para trabajar. Ahora puedo dedicar más tiempo a mis pacientes y menos a organizar materiales.”</p><b>Lucía Fernández</b><small>🇦🇷 Kinesióloga · Argentina</small></div></article>
     </div>
   </div>
 </section>
